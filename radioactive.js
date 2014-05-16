@@ -1,4 +1,15 @@
 if (Meteor.isClient) {
+
+  // ROUTES ///
+  /**
+  * Routing
+  */
+  Router.map(function() {
+    this.route('home', {path: '/'});
+  });
+  // /ROUTES //
+
+
   Template.hello.greeting = function () {
     return "Welcome to radioactive.";
   };
@@ -10,6 +21,21 @@ if (Meteor.isClient) {
         console.log("You pressed the button");
     }
   });
+
+  /** @jsx React.DOM */
+  var HelloMessage = React.createClass({
+    render: function() {
+      return '<div>Hello {this.props.name}</div>';
+    }
+  });
+
+  Template.person.rendered = function(){
+    /** @jsx React.DOM */
+    React.renderComponent(
+      '<h1>Hello, cerdos!</h1>',
+      document.getElementById('example')
+    );
+  }
 }
 
 if (Meteor.isServer) {
